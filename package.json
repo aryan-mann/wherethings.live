@@ -1,0 +1,37 @@
+{
+  "name": "gatsby-starter-styled-tailwind",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Gatsby Starter with Tailwind, Emotion, and Styled Components",
+  "author": "Aryan Mann",
+  "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "emotion",
+    "tailwind",
+    "image"
+  ],
+  "scripts": {
+    "dev": "gatsby develop -H 0.0.0.0",
+    "prod": "gatsby build && gatsby serve -H 0.0.0.0",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
+    "gatsby": "^2.26.1",
+    "gatsby-plugin-emotion": "^5.2.0",
+    "gatsby-plugin-image": "^0.5.1",
+    "gatsby-plugin-react-helmet": "^3.8.0",
+    "gatsby-plugin-sharp": "^2.12.1",
+    "gatsby-plugin-sitemap": "^2.10.0",
+    "gatsby-source-filesystem": "^2.9.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "tailwindcss": "^2.0.2",
+    "twin.macro": "^2.0.8"
+  }
+}
