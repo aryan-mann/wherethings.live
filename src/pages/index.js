@@ -1,22 +1,71 @@
 import React from "react";
 import DefaultLayout from "../components/layout/default-layout";
 import styled from "@emotion/styled";
-import SnowGlobeSVG from "../assets/images/undraw_snow_globe.svg";
+import { Link } from "gatsby";
 import tw from "twin.macro";
+import { graphql, useStaticQuery } from "gatsby";
+import { Helmet } from "react-helmet";
+import SEO from "../components/seo";
 
-const ImageAndTitle = styled.div`
-  ${tw`flex flex-col px-2 space-y-8 items-center py-8 md:py-16 justify-center`}
+const ThingsHolder = styled.div`
+  ${tw`w-full m-auto max-w-7xl`}
+  ${tw`grid grid-cols-1 gap-4 md:gap-8 sm:grid-cols-2 lg:grid-cols-3`}
 `;
 
+const Thing = ({
+  id,
+  original,
+  timestamp,
+  caption,
+  dimensions,
+  children,
+  ...rest
+}) => {
+  return (
+    <Link
+      to={`/thing/${timestamp}`}
+      as="article"
+      className="group"
+      css={[tw`flex flex-col items-center justify-center`]}
+      {...rest}
+    >
+      <img
+        css={[
+          tw`duration-1000 rounded shadow-xl cursor-pointer transform-gpu group-hover:scale-95 hover:shadow-2xl`,
+        ]}
+        width={dimensions?.width}
+        height={dimensions?.height}
+        src={original}
+        alt={caption}
+      />
+    </Link>
+  );
+};
+
 export default function Homepage() {
+  const instaPosts = useStaticQuery(graphql`
+    {
+      allInstaNode {
+        nodes {
+          id
+          original
+          timestamp
+          caption
+          comments
+          likes
+          dimensions {
+            width
+            height
+          }
+        }
+      }
+    }
+  `).allInstaNode.nodes.sort((x, y) => y.timestamp - x.timestamp);
+
   return (
     <DefaultLayout>
-      <ImageAndTitle>
-        <img tw="max-h-36 md:max-h-60 xl:max-h-80" src={SnowGlobeSVG} />
-        <h2 tw="text-2xl md:text-3xl xl:text-4xl">
-          Welcome to my Gatbsy site!
-        </h2>
-      </ImageAndTitle>
+      <SEO />
+      <ThingsHolder>{instaPosts?.map(Thing)}</ThingsHolder>
     </DefaultLayout>
   );
 }

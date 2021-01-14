@@ -5,7 +5,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['"Noto Sans JP"', ...original.theme.fontFamily.sans],
+      sans: ['"Dancing Script"', ...original.theme.fontFamily.sans],
     },
   },
   variants: {

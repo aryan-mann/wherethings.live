@@ -2,40 +2,53 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
-import { StaticImage } from "gatsby-plugin-image";
 import routes from "../../routes";
+import { keyframes } from "@emotion/react";
 
 const Wrapper = styled.header`
-  ${tw`px-4 py-2 md:py-4 bg-gray-200`}
+  ${tw`px-4 py-2 bg-transparent md:py-4`}
 `;
 const Container = styled.div`
   ${tw`flex max-w-5xl m-auto`}
 `;
-const Items = styled.div`
-  ${tw`flex px-2 flex-grow items-center justify-end space-x-4`}
+
+const ColorAnimation = keyframes`
+  0% {
+    color: white;
+  }
+
+  40% {
+    color: white;
+  }
+
+  50% {
+    color: black;
+  }
+
+  90% {
+    color: black;
+  }
+
+  100% {
+    color: white;
+  }
 `;
-const Item = styled(Link)`
-  ${tw`px-4 py-2 bg-white rounded shadow hover:shadow-none active:shadow-inner`}
+
+const Title = styled.h1`
+  ${tw`font-sans text-4xl font-black transition-all sm:text-5xl md:text-6xl lg:text-7xl`}
+  animation: ${ColorAnimation} 8s ease-in-out 0s infinite;
 `;
 
 export default function ({ ...props }) {
   return (
     <Wrapper {...props}>
       <Container>
-        <Link to={routes?.TopNavigationBar?.Home ?? "/"}>
-          <StaticImage
-            css={tw`transform-gpu duration-500 hover:-rotate-12`}
-            src="../../assets/images/icon.png"
-            layout="fixed"
-            placeholder="tracedSVG"
-            width={50}
-          />
+        <Link
+          tw="z-30 px-2 py-4 md:py-8"
+          to={routes?.TopNavigationBar?.Home ?? "/"}
+        >
+          <Title>Where Things Live</Title>
         </Link>
-        <Items>
-          {Object.entries(routes?.TopNavigationBar)?.map(([name, url]) => (
-            <Item to={url}>{name}</Item>
-          ))}
-        </Items>
       </Container>
     </Wrapper>
   );

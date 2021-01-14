@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Starter Styled Tailwind",
+    title: "Where Things Live",
+    siteUrl: "https://wherethings.live/",
   },
   plugins: [
     {
@@ -8,6 +9,12 @@ module.exports = {
       options: {
         name: "assets",
         path: "./src/assets/",
+      },
+    },
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: process?.env?.INSTA || "3998316794",
       },
     },
     `gatsby-plugin-emotion`,
