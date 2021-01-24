@@ -1,9 +1,9 @@
 import React from "react";
-import { keyframes } from "@emotion/react";
+// import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
 import DefaultLayout from "../../components/layout/default-layout";
-import { Link } from "gatsby";
+import { Link, graphql } from "gatsby";
 import SEO from "../../components/seo";
 
 const ThingHolder = styled.div`
@@ -14,32 +14,27 @@ const Thing = styled.article`
   ${tw`flex flex-col items-center justify-center space-x-8 space-y-2 font-bold sm:space-y-8 lg:flex-row`}
 `;
 
-const IdleAnimation = keyframes`
-  0% {
-    transform: skewX(-0.5deg) rotateZ(-0.5deg) rotateX(1deg);
-  }
-  100% {
-    transform: skewX(0.5deg) rotateZ(0.5deg) rotateX(-1deg);
-  }
-`;
+// animation: ${IdleAnimation} 3s ease-in-out 0s infinite alternate;
+// const IdleAnimation = keyframes`
+//   0% {
+//     transform: skewX(-0.5deg) rotateZ(-0.5deg) rotateX(1deg);
+//   }
+//   100% {
+//     transform: skewX(0.5deg) rotateZ(0.5deg) rotateX(-1deg);
+//   }
+// `;
 
 const ThingPicture = styled.img`
   ${tw`max-w-sm rounded shadow-xl transform-gpu`}
-  animation: ${IdleAnimation} 3s ease-in-out 0s infinite alternate;
 `;
 
 const ThingDetails = styled.div`
   ${tw`flex flex-col max-w-xl px-1 py-8 space-y-4`}
 `;
 
-const ThingDetail = ({ what, children, ...rest }) => {
-  return (
-    <p css={[tw`text-2xl`]} {...rest}>
-      {what && <b>{what} </b>}
-      {children}
-    </p>
-  );
-};
+const ThingDetail = styled.p`
+  ${tw`text-2xl`}
+`;
 
 const dateFormat = { year: "numeric", month: "long", day: "numeric" };
 
@@ -71,23 +66,33 @@ export default function ({ data }) {
             src={original}
           />
           <ThingDetails>
-            <ThingDetail tw="mb-8 font-bold text-2xl md:text-3xl">
-              {caption}
+            <p css={{ fontSize: 24 }}>Hello</p>
+            {/*
+            tw`mb-8 text-2xl font-bold md:text-3xl`
+            <ThingDetail>
+              <span role="img" aria-label="clock">
+                🕒
+              </span>{" "}
+              {postDate.toLocaleString(undefined, dateFormat)}
             </ThingDetail>
             <ThingDetail>
-              🕒 {postDate.toLocaleString(undefined, dateFormat)}
+              <span role="img" aria-label="heart">
+                💖
+              </span>
+              {likes} //{" "}
+              <span role="img" aria-label="microphone">
+                🎤
+              </span>{" "}
+              {comments}
             </ThingDetail>
-            <ThingDetail>
-              💖{likes} // 🎤 {comments}
-            </ThingDetail>
-            <ThingDetail css={[tw`flex justify-end w-full`]}>
-              <Link
-                tw="text-xl hover:shadow py-2 px-2 mr-2 mt-4 bg-black bg-opacity-0 transition hover:bg-opacity-10"
+            <ThingDetail css={[tw`flex justify-end w-full`]}> */}
+            {/* <Link
+                css={tw`px-2 py-2 mt-4 mr-2 text-xl transition bg-black bg-opacity-0 hover:shadow hover:bg-opacity-10`}
                 to={"/"}
-              >
+              > 
                 Go Back 🏠
-              </Link>
-            </ThingDetail>
+               </Link> */}
+            {/* </ThingDetail> */}
           </ThingDetails>
         </Thing>
       </ThingHolder>

@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 import { Link } from "gatsby";
 import tw from "twin.macro";
 import { graphql, useStaticQuery } from "gatsby";
-import { Helmet } from "react-helmet";
 import SEO from "../components/seo";
 
 const ThingsHolder = styled.div`
